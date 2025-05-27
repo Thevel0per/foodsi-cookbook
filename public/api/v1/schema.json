@@ -407,6 +407,12 @@
           "readable": true,
           "writable": true,
           "description": null
+        },
+        "featured": {
+          "type": "boolean",
+          "readable": true,
+          "writable": true,
+          "description": null
         }
       },
       "extra_attributes": {
@@ -425,6 +431,8 @@
         "created_at": {
         },
         "likes_count": {
+        },
+        "featured": {
         }
       },
       "filters": {
@@ -506,6 +514,13 @@
             "lte"
           ]
         },
+        "featured": {
+          "type": "boolean",
+          "operators": [
+            "eq"
+          ],
+          "single": true
+        },
         "category_id": {
           "type": "integer_id",
           "operators": [
@@ -518,6 +533,17 @@
           ]
         },
         "liked_by_user_id": {
+          "type": "integer",
+          "operators": [
+            "eq",
+            "not_eq",
+            "gt",
+            "gte",
+            "lt",
+            "lte"
+          ]
+        },
+        "author_id": {
           "type": "integer",
           "operators": [
             "eq",
@@ -543,6 +569,18 @@
       },
       "stats": {
         "total": [
+          "count"
+        ],
+        "by_category": [
+          "count"
+        ],
+        "by_month_week": [
+          "count"
+        ],
+        "likes_by_category": [
+          "count"
+        ],
+        "likes_by_month_week": [
           "count"
         ]
       }
@@ -582,6 +620,13 @@
           "resource": "RecipeResource"
         },
         "show": {
+          "resource": "RecipeResource"
+        }
+      }
+    },
+    "/api/v1/featured_recipes": {
+      "actions": {
+        "create": {
           "resource": "RecipeResource"
         }
       }
