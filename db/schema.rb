@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_07_111230) do
+ActiveRecord::Schema[7.0].define(version: 2025_05_26_191624) do
   create_table "authors", force: :cascade do |t|
     t.string "name"
     t.string "bio"
@@ -38,6 +38,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_07_111230) do
     t.index ["recipe_id"], name: "index_recipe_categories_on_recipe_id"
   end
 
+  create_table "recipe_likes", force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_recipe_likes_on_recipe_id"
+    t.index ["user_id"], name: "index_recipe_likes_on_user_id"
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.string "title"
     t.text "text"
@@ -59,5 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_07_111230) do
   add_foreign_key "authors", "users"
   add_foreign_key "recipe_categories", "categories"
   add_foreign_key "recipe_categories", "recipes"
+  add_foreign_key "recipe_likes", "recipes"
+  add_foreign_key "recipe_likes", "users"
   add_foreign_key "recipes", "authors"
 end
