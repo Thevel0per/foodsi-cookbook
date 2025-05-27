@@ -32,7 +32,7 @@ module Recipes
         .order('COUNT(recipe_likes.id) DESC')
         .limit(1)
         .first
-        .likes_count
+        &.likes_count || 0
     end
 
     def currently_featured_count
