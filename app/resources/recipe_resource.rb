@@ -7,6 +7,9 @@ class RecipeResource < ApplicationResource
   attribute :likes_count, :integer, filterable: false
   attribute :featured, :boolean
 
+  secondary_endpoint '/featured_recipes', [:create]
+
+
   def base_scope
     Recipe.includes(:recipe_likes)
   end
