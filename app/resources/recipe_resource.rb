@@ -18,4 +18,5 @@ class RecipeResource < ApplicationResource
       scope.liked_by_user_id(value)
     end
   end
+  filter :author_id, :integer
 end
