@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :categories, only: :index
     resources :recipes, only: %i[index show]
     resources :recipe_likes, only: %i[create destroy]
+    resources :featured_recipes, only: :create
     mount VandalUi::Engine, at: '/vandal'
   end
 end
