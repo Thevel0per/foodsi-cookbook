@@ -23,13 +23,13 @@ RSpec.describe "recipe_likes#destroy", type: :request do
   end
 
   describe 'deleting existing like' do
-    let(:like) { create(:recipe_like, user: user, recipe: recipe) }
+    let!(:like) { create(:recipe_like, user: user, recipe: recipe) }
     let(:like_id) { like.id }
 
     it 'responds with success and created like' do
       expect(RecipeLikeResource).to receive(:find).and_call_original
 
-      expect { make_request }.to change { RecipeLike.where(user: user, recipe: recipe1).size }.by(-1)
+      expect { make_request }.to change { RecipeLike.where(user: user, recipe: recipe).size }.by(-1)
 
       expect(response.status).to eq(200)
       expect(JSON.parse(response.body)). to eq({ 'meta' => {} })
@@ -46,7 +46,7 @@ RSpec.describe "recipe_likes#destroy", type: :request do
     it 'responds with unprocessable entity' do
       expect(RecipeLikeResource).to receive(:find).and_call_original
 
-      expect { make_request }.not_to change { RecipeLike.where(user: user, recipe: recipe1).size }
+      expect { make_request }.not_to change { RecipeLike.where(user: user, recipe: recipe).size }
 
       error = JSON.parse(response.body)['errors'].first
       expect(response.status).to eq(404)

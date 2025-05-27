@@ -240,6 +240,127 @@
       }
     },
     {
+      "name": "RecipeLikeResource",
+      "type": "recipe_likes",
+      "graphql_entrypoint": "recipeLikes",
+      "description": null,
+      "attributes": {
+        "id": {
+          "type": "integer_id",
+          "readable": true,
+          "writable": true,
+          "description": null
+        },
+        "user_id": {
+          "type": "integer",
+          "readable": false,
+          "writable": true,
+          "description": null
+        },
+        "recipe_id": {
+          "type": "integer",
+          "readable": false,
+          "writable": true,
+          "description": null
+        },
+        "created_at": {
+          "type": "datetime",
+          "readable": true,
+          "writable": true,
+          "description": null
+        },
+        "updated_at": {
+          "type": "datetime",
+          "readable": true,
+          "writable": true,
+          "description": null
+        }
+      },
+      "extra_attributes": {
+      },
+      "sorts": {
+        "id": {
+        },
+        "user_id": {
+        },
+        "recipe_id": {
+        },
+        "created_at": {
+        },
+        "updated_at": {
+        }
+      },
+      "filters": {
+        "id": {
+          "type": "integer_id",
+          "operators": [
+            "eq",
+            "not_eq",
+            "gt",
+            "gte",
+            "lt",
+            "lte"
+          ]
+        },
+        "user_id": {
+          "type": "integer",
+          "operators": [
+            "eq",
+            "not_eq",
+            "gt",
+            "gte",
+            "lt",
+            "lte"
+          ]
+        },
+        "recipe_id": {
+          "type": "integer",
+          "operators": [
+            "eq",
+            "not_eq",
+            "gt",
+            "gte",
+            "lt",
+            "lte"
+          ]
+        },
+        "created_at": {
+          "type": "datetime",
+          "operators": [
+            "eq",
+            "not_eq",
+            "gt",
+            "gte",
+            "lt",
+            "lte"
+          ]
+        },
+        "updated_at": {
+          "type": "datetime",
+          "operators": [
+            "eq",
+            "not_eq",
+            "gt",
+            "gte",
+            "lt",
+            "lte"
+          ]
+        }
+      },
+      "relationships": {
+        "recipe": {
+          "type": "belongs_to",
+          "description": null,
+          "resource": "RecipeResource"
+        }
+      },
+      "stats": {
+        "total": [
+          "count"
+        ]
+      }
+    },
+    {
       "name": "RecipeResource",
       "type": "recipes",
       "graphql_entrypoint": "recipes",
@@ -280,6 +401,12 @@
           "readable": true,
           "writable": true,
           "description": null
+        },
+        "likes_count": {
+          "type": "integer",
+          "readable": true,
+          "writable": true,
+          "description": null
         }
       },
       "extra_attributes": {
@@ -296,6 +423,8 @@
         "preparation_time": {
         },
         "created_at": {
+        },
+        "likes_count": {
         }
       },
       "filters": {
@@ -387,6 +516,17 @@
             "lt",
             "lte"
           ]
+        },
+        "liked_by_user_id": {
+          "type": "integer",
+          "operators": [
+            "eq",
+            "not_eq",
+            "gt",
+            "gte",
+            "lt",
+            "lte"
+          ]
         }
       },
       "relationships": {
@@ -423,6 +563,16 @@
       "actions": {
         "index": {
           "resource": "CategoryResource"
+        }
+      }
+    },
+    "/api/v1/recipe_likes": {
+      "actions": {
+        "create": {
+          "resource": "RecipeLikeResource"
+        },
+        "destroy": {
+          "resource": "RecipeLikeResource"
         }
       }
     },
