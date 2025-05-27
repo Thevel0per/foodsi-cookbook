@@ -48,11 +48,7 @@ module Recipes
     end
 
     def toggle_featured
-      if recipe.featured
-        recipe.update(featured: false)
-      else
-        recipe.update(featured: true)
-      end
+      recipe.update(featured: !recipe.featured)
     end
 
     def author
