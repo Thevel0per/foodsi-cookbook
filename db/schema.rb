@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_05_26_191624) do
+ActiveRecord::Schema[7.0].define(version: 2025_05_27_134632) do
   create_table "authors", force: :cascade do |t|
     t.string "name"
     t.string "bio"
@@ -55,6 +55,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_05_26_191624) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "author_id"
+    t.boolean "featured", default: false, null: false
+    t.index ["author_id", "featured"], name: "index_recipes_on_author_id_and_featured"
     t.index ["author_id"], name: "index_recipes_on_author_id"
   end
 
