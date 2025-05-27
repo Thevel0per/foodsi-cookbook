@@ -5,6 +5,7 @@ class RecipeResource < ApplicationResource
   attribute :preparation_time, :integer
   attribute :created_at, :datetime
   attribute :likes_count, :integer, filterable: false
+  attribute :featured, :boolean
 
   def base_scope
     Recipe.includes(:recipe_likes)
